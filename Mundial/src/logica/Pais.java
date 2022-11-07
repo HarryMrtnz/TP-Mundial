@@ -6,6 +6,8 @@ public class Pais {
 	private int goles;
 	private String grupo;
 	private boolean calificado;
+	private int puntos;
+	private int puestoGrupo;
 	
 	public Pais(String id, String nombre, int goles, String grupo, boolean calificado) {
 		super();
@@ -53,13 +55,29 @@ public class Pais {
 	public void setGrupo(String grupo) {
 		this.grupo = grupo;
 	}
-
+	
 	public boolean isCalificado() {
 		return calificado;
 	}
 
 	public void setCalificado(boolean calificado) {
 		this.calificado = calificado;
+	}
+
+	public int getPuntos() {
+		return puntos;
+	}
+
+	public void setPuntos(int puntos) {
+		this.puntos = puntos;
+	}
+
+	public int getPuestoGrupo() {
+		return puestoGrupo;
+	}
+
+	public void setPuestoGrupo(int puestoGrupo) {
+		this.puestoGrupo = puestoGrupo;
 	}
 	
 	

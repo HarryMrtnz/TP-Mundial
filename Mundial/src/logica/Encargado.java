@@ -1,7 +1,5 @@
 package logica;
 
-import java.util.Scanner;
-
 public class Encargado {
 	
 	private String dni;
@@ -17,7 +15,7 @@ public class Encargado {
 
 	@Override
 	public String toString() {
-		return "Encargado [dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + "]";
+		return "Encargados [dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + "]";
 	}
 
 	public String getDni() {
@@ -44,35 +42,6 @@ public class Encargado {
 		this.apellido = apellido;
 	}
 	
-	public void cargarResultado(Partido partido) {
-		
-		Scanner entrada = new Scanner(System.in);
-		
-		System.out.println("¿Cuantos goles hizo " + partido.getPais1().getNombre() +"?");
-		int goles1 = entrada.nextInt();	
-		
-		partido.getPais1().setGoles(goles1);
-		
-		System.out.println("¿Cuantos goles hizo " + partido.getPais2().getNombre() +"?");
-		int goles2 = entrada.nextInt();	
-		
-		partido.getPais2().setGoles(goles2);
-		
-		
-		if (partido.getPais1().getGoles() > partido.getPais2().getGoles() ) {
-			partido.getPais2().setCalificado(false);
-			System.out.println("Ganó "+  partido.getPais1().getNombre());
-			
-		} else if (partido.getPais1().getGoles() < partido.getPais2().getGoles() ){
-			partido.getPais1().setCalificado(false);
-			System.out.println("Ganó "+  partido.getPais2().getNombre());
-			
-		}else {
-			System.out.println("Empate");
-		}
-		
-		
-	}
 	
 
 	
