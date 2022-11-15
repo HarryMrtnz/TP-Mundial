@@ -74,33 +74,144 @@ public class Main {
 			listaPaises.add(australia);			listaPaises.add(ghana);
 			listaPaises.add(denmark);			listaPaises.add(uruguay);
 			listaPaises.add(tunisia);			listaPaises.add(korea_republic);
+			
+		LinkedList<Pais> listaGrupos= new LinkedList<Pais>();
+
+		LinkedList<Pais> listaCuartos = new LinkedList<Pais>();
+		LinkedList<Pais> listaSemifinales = new LinkedList<Pais>();
+		LinkedList<Pais> listaFinal = new LinkedList<Pais>();
+		LinkedList<Pais> listaTercerPuesto= new LinkedList<Pais>();
 
 		Encargado e1 = new Encargado ("34704934", "Harry", "Mrtnz");
 //		e1.cargarResultado(p1);
 		
 //		mostrarEquipos(listaPaises);
 //		buscarGrupo(listaPaises);
-//		buscarEquipo(listaPaises);
-
-		//jugarFaceGrupos(qatar, ecuador, senegal, netherlands);
 		
-//		mostrarCalificados(listaPaises);
-//		jugarOctavos(listaPaises);
-//		mostrarCalificados(listaPaises);
+		Partido p1 = new Partido (1, qatar, ecuador);
+		Partido p2 = new Partido (2, senegal, netherlands);
+		Partido p3 = new Partido (3, qatar, senegal);
+		Partido p4 = new Partido (4, netherlands, ecuador);
+		Partido p5 = new Partido (5, netherlands, qatar);
+		Partido p6 = new Partido (6, ecuador, senegal);
+		
+		Partido p7 = new Partido (7, england, ir_iran);
+		Partido p8 = new Partido (8, usa, wales);
+		Partido p9 = new Partido (9, england, usa);
+		Partido p10 = new Partido (10, wales, ir_iran);
+		Partido p11 = new Partido (11, wales, england);
+		Partido p12 = new Partido (12, ir_iran, usa);
+		
+//		imprimirMenu();
+		
+		p1.jugar(qatar, ecuador);			p2.jugar(senegal, netherlands);		p3.jugar(qatar, senegal);
+		p4.jugar(netherlands, ecuador);		p5.jugar(netherlands, qatar); 		p6.jugar(ecuador, senegal);
+		calcularPuestoGrupos(qatar, ecuador, senegal, netherlands);
+		clasificadosGrupoA(listaPaises);
+	
+	}
+	
+	public static void calcularPuestoGrupos(Pais pais1, Pais pais2, Pais pais3, Pais pais4) {
+		/* 01 */if (pais1.getPuntos() >= pais2.getPuntos() && pais2.getPuntos() >= pais3.getPuntos() && pais3.getPuntos() >= pais4.getPuntos()) {
+			pais1.setPuestoGrupo(1); pais2.setPuestoGrupo(2); pais3.setPuestoGrupo(3); pais4.setPuestoGrupo(4);
+		/* 02 */} else if (pais1.getPuntos() >= pais2.getPuntos() && pais2.getPuntos() >= pais4.getPuntos() && pais4.getPuntos() >= pais3.getPuntos()){
+			pais1.setPuestoGrupo(1); pais2.setPuestoGrupo(2); pais4.setPuestoGrupo(3); pais3.setPuestoGrupo(4);
+		/* 03 */} else if (pais1.getPuntos() >= pais3.getPuntos() && pais3.getPuntos() >= pais2.getPuntos() && pais2.getPuntos() >= pais4.getPuntos()){
+			pais1.setPuestoGrupo(1); pais3.setPuestoGrupo(2); pais2.setPuestoGrupo(3); pais4.setPuestoGrupo(4);
+		/* 04 */} else if (pais1.getPuntos() >= pais3.getPuntos() && pais3.getPuntos() >= pais4.getPuntos() && pais4.getPuntos() >= pais2.getPuntos()){
+			pais1.setPuestoGrupo(1); pais3.setPuestoGrupo(2); pais4.setPuestoGrupo(3); pais2.setPuestoGrupo(4);
+		/* 05 */} else if (pais1.getPuntos() >= pais4.getPuntos() && pais4.getPuntos() >= pais2.getPuntos() && pais2.getPuntos() >= pais3.getPuntos()){
+			pais1.setPuestoGrupo(1); pais4.setPuestoGrupo(2); pais2.setPuestoGrupo(3); pais3.setPuestoGrupo(4);
+		/* 06 */} else if (pais1.getPuntos() >= pais4.getPuntos() && pais4.getPuntos() >= pais3.getPuntos() && pais3.getPuntos() >= pais2.getPuntos()){
+			pais1.setPuestoGrupo(1); pais4.setPuestoGrupo(2); pais3.setPuestoGrupo(3); pais2.setPuestoGrupo(4);
+			
+		/* 07 */} else if (pais2.getPuntos() >= pais1.getPuntos() && pais1.getPuntos() >= pais3.getPuntos() && pais3.getPuntos() >= pais4.getPuntos()){
+			pais2.setPuestoGrupo(1); pais1.setPuestoGrupo(2); pais3.setPuestoGrupo(3); pais4.setPuestoGrupo(4);
+		/* 08 */} else if (pais2.getPuntos() >= pais1.getPuntos() && pais1.getPuntos() >= pais4.getPuntos() && pais4.getPuntos() >= pais3.getPuntos()){
+			pais2.setPuestoGrupo(1); pais1.setPuestoGrupo(2); pais4.setPuestoGrupo(3); pais3.setPuestoGrupo(4);
+		/* 09 */} else if (pais2.getPuntos() >= pais3.getPuntos() && pais3.getPuntos() >= pais1.getPuntos() && pais1.getPuntos() >= pais4.getPuntos()){
+			pais2.setPuestoGrupo(1); pais3.setPuestoGrupo(2); pais1.setPuestoGrupo(3); pais4.setPuestoGrupo(4);
+		/* 10 */} else if (pais2.getPuntos() >= pais3.getPuntos() && pais3.getPuntos() >= pais4.getPuntos() && pais4.getPuntos() >= pais1.getPuntos()){
+			pais2.setPuestoGrupo(1); pais3.setPuestoGrupo(2); pais4.setPuestoGrupo(3); pais1.setPuestoGrupo(4);
+		/* 11 */} else if (pais2.getPuntos() >= pais4.getPuntos() && pais4.getPuntos() >= pais1.getPuntos() && pais1.getPuntos() >= pais3.getPuntos()){
+			pais2.setPuestoGrupo(1); pais4.setPuestoGrupo(2); pais1.setPuestoGrupo(3); pais3.setPuestoGrupo(4);
+		/* 12 */} else if (pais2.getPuntos() >= pais4.getPuntos() && pais4.getPuntos() >= pais3.getPuntos() && pais3.getPuntos() >= pais1.getPuntos()){
+			pais2.setPuestoGrupo(1); pais4.setPuestoGrupo(2); pais3.setPuestoGrupo(3); pais1.setPuestoGrupo(4);
+		
+		/* 13 */} else if (pais3.getPuntos() >= pais1.getPuntos() && pais1.getPuntos() >= pais2.getPuntos() && pais2.getPuntos() >= pais4.getPuntos()){
+			pais3.setPuestoGrupo(1); pais1.setPuestoGrupo(2); pais2.setPuestoGrupo(3); pais4.setPuestoGrupo(4);
+		/* 14 */} else if (pais3.getPuntos() >= pais1.getPuntos() && pais1.getPuntos() >= pais4.getPuntos() && pais4.getPuntos() >= pais2.getPuntos()){
+			pais3.setPuestoGrupo(1); pais1.setPuestoGrupo(2); pais4.setPuestoGrupo(3); pais2.setPuestoGrupo(4);
+		/* 15 */} else if (pais3.getPuntos() >= pais2.getPuntos() && pais2.getPuntos() >= pais1.getPuntos() && pais1.getPuntos() >= pais4.getPuntos()){
+			pais3.setPuestoGrupo(1); pais2.setPuestoGrupo(2); pais1.setPuestoGrupo(3); pais4.setPuestoGrupo(4);
+		/* 16 */} else if (pais3.getPuntos() >= pais2.getPuntos() && pais2.getPuntos() >= pais4.getPuntos() && pais4.getPuntos() >= pais1.getPuntos()){
+			pais3.setPuestoGrupo(1); pais2.setPuestoGrupo(2); pais4.setPuestoGrupo(3); pais1.setPuestoGrupo(4);
+		/* 17 */} else if (pais3.getPuntos() >= pais4.getPuntos() && pais4.getPuntos() >= pais1.getPuntos() && pais1.getPuntos() >= pais2.getPuntos()){
+			pais3.setPuestoGrupo(1); pais4.setPuestoGrupo(2); pais1.setPuestoGrupo(3); pais2.setPuestoGrupo(4);
+		/* 18 */} else if (pais3.getPuntos() >= pais4.getPuntos() && pais4.getPuntos() >= pais2.getPuntos() && pais2.getPuntos() >= pais1.getPuntos()){
+			pais3.setPuestoGrupo(1); pais4.setPuestoGrupo(2); pais2.setPuestoGrupo(3); pais1.setPuestoGrupo(4);
+		
+		/* 19 */} else if (pais4.getPuntos() >= pais1.getPuntos() && pais1.getPuntos() >= pais2.getPuntos() && pais2.getPuntos() >= pais3.getPuntos()){
+			pais4.setPuestoGrupo(1); pais1.setPuestoGrupo(2); pais2.setPuestoGrupo(3); pais3.setPuestoGrupo(4);
+		/* 20 */} else if (pais4.getPuntos() >= pais1.getPuntos() && pais1.getPuntos() >= pais3.getPuntos() && pais3.getPuntos() >= pais2.getPuntos()){
+			pais4.setPuestoGrupo(1); pais1.setPuestoGrupo(2); pais3.setPuestoGrupo(3); pais2.setPuestoGrupo(4);
+		/* 21 */} else if (pais4.getPuntos() >= pais2.getPuntos() && pais2.getPuntos() >= pais1.getPuntos() && pais1.getPuntos() >= pais3.getPuntos()){
+			pais4.setPuestoGrupo(1); pais2.setPuestoGrupo(2); pais1.setPuestoGrupo(3); pais3.setPuestoGrupo(4);
+		/* 22 */} else if (pais4.getPuntos() >= pais2.getPuntos() && pais2.getPuntos() >= pais3.getPuntos() && pais3.getPuntos() >= pais1.getPuntos()){
+			pais4.setPuestoGrupo(1); pais2.setPuestoGrupo(2); pais3.setPuestoGrupo(3); pais1.setPuestoGrupo(4);
+		/* 23 */} else if (pais4.getPuntos() >= pais3.getPuntos() && pais3.getPuntos() >= pais1.getPuntos() && pais1.getPuntos() >= pais2.getPuntos()){
+			pais4.setPuestoGrupo(1); pais3.setPuestoGrupo(2); pais1.setPuestoGrupo(3); pais2.setPuestoGrupo(4);
+		/* 24 */} else {
+			pais4.setPuestoGrupo(1); pais3.setPuestoGrupo(2); pais2.setPuestoGrupo(3); pais1.setPuestoGrupo(4);
+				}
+		
+		if (pais1.getPuestoGrupo() == 3 || pais1.getPuestoGrupo()== 4){
+			pais1.setCalificado(false);
+		}
+		if (pais2.getPuestoGrupo() == 3 || pais2.getPuestoGrupo()== 4){
+			pais2.setCalificado(false);
+		}
+		if (pais3.getPuestoGrupo() == 3 || pais3.getPuestoGrupo()== 4){
+			pais3.setCalificado(false);
+		}
+		if (pais4.getPuestoGrupo() == 3 || pais4.getPuestoGrupo()== 4){
+			pais4.setCalificado(false);
+		}
 		
 		LinkedList<Pais> listaOctavos = new LinkedList<Pais>();
 		
-//		for (Partido partido : Partidos) {
+		for (Pais pais : listaOctavos) {
+			if (pais.isCalificado()) {
+				listaOctavos.add(pais);
+			}
+
+//		System.out.println(pais1.getNombre()+ " consiguio el puesto " +pais1.getPuestoGrupo());
+//		System.out.println(pais2.getNombre()+ " consiguio el puesto " +pais2.getPuestoGrupo());
+//		System.out.println(pais3.getNombre()+ " consiguio el puesto " +pais3.getPuestoGrupo());
+//		System.out.println(pais4.getNombre()+ " consiguio el puesto " +pais4.getPuestoGrupo());
+//		System.out.println("#####################\n");
 //		
-//			listaOctavos.add(partido.getPais1());
-//		}
+//		System.out.println(pais1.getNombre()+ " - calificacion: " +pais1.isCalificado());
+//		System.out.println(pais2.getNombre()+ " - calificacion: " +pais2.isCalificado());
+//		System.out.println(pais3.getNombre()+ " - calificacion: " +pais3.isCalificado());
+//		System.out.println(pais4.getNombre()+ " - calificacion: " +pais4.isCalificado());
+//		System.out.println("#####################\n");
+		}
+	}
+	
+	public static void imprimirMenu(){
+		System.out.print("");
 		
-		Partido partido = new Partido();
+		Scanner entrada = new Scanner(System.in);
+		int opcion = entrada.nextInt();
 		
-		
-		for (int i = 0; i < listaPaises.size(); i+=4) {
+		switch (opcion) {
+		case 1:
 			
-			partido.jugarFaceGrupos(listaPaises.get(i), listaPaises.get(i+1), listaPaises.get(i+2), listaPaises.get(i+3));
+			break;
+
+		default:
+			break;
 		}
 	}
 	
@@ -157,4 +268,19 @@ public class Main {
 		}
 		System.out.println(); //Espacio separador
 	}
+	
+	public static void clasificadosGrupoA(LinkedList<Pais> lista) {
+		if(lista.isEmpty()) {
+			System.out.println("Lista vacia pá");
+		
+		}else {
+			for (Pais pais : lista) {	
+				if (pais.getGrupo()== "A" && pais.isCalificado()) {
+					System.out.println("Equipo "+pais.getId()+ " = "+ pais.getNombre());
+				}
+			}
+		}
+		System.out.println(); //Espacio separador
+	}
+
 }
