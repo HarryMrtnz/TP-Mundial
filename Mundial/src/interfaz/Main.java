@@ -183,11 +183,11 @@ public class Main {
 		}
 //		listaOctavos(listaOctavos);
 		
-		imprimirMenu(listaPaises);
+		imprimirMenu(listaPaises, listaPartidos);
 		
 	}
 	
-	public static void imprimirMenu(LinkedList<Pais> listaPaises){
+	public static void imprimirMenu(LinkedList<Pais> listaPaises, LinkedList<Partido> listaPartidos){
 		System.out.println("##########################################");
 		System.out.println("# -  Menu - Mundial Qatar 2022");
 		System.out.println("# Escoja la opcion deseada: ");
@@ -197,78 +197,105 @@ public class Main {
 		System.out.println("# 4 - Ver clasificados por grupo");
 		System.out.println("# 5 - Buscar partidos por grupos");
 		System.out.println("# 6 - Ver clasificados a Octavos");
+		System.out.println("# 7 -  ... ");
+		System.out.println("# 8 -  ... ");
 		
 		Scanner entrada = new Scanner(System.in);
 		int opcion = entrada.nextInt();
-
 		
 		switch (opcion) {
 		case 1:
 			mostrarEquipos(listaPaises);
-			imprimirMenu(listaPaises);
+			imprimirMenu(listaPaises, listaPartidos);
 			break;
 			
 		case 2:
 			buscarEquipo(listaPaises);
-			imprimirMenu(listaPaises);
+			imprimirMenu(listaPaises, listaPartidos);
 			break;
 
 		case 3:
 			buscarGrupo(listaPaises);
-			imprimirMenu(listaPaises);
+			imprimirMenu(listaPaises, listaPartidos);
 			break;
 			
 		case 4:
-			System.out.println("##########################################");
-			System.out.println("# - Clasificados por grupos");
-			System.out.println("# Escoja el Grupo que desea ver: ");
-			System.out.println("# 1 - Grupo A. ");
-			System.out.println("# 2 - Grupo B. ");
-			System.out.println("# 3 - Grupo C. ");
-			System.out.println("# 4 - Grupo D. ");
-			System.out.println("# 5 - Grupo E. ");
-			System.out.println("# 6 - Grupo F. ");
-			System.out.println("# 7 - Grupo G. ");
-			System.out.println("# 8 - Grupo H. ");
-			System.out.println("# 9 ← Atras ");
+			elegirGrupoCalificado(listaPaises, listaPartidos);
+			break;
+		
+		case 5:
+			buscarPartidoGrupo(listaPartidos);
+			imprimirMenu(listaPaises, listaPartidos);
+			break;
 			
-			switch (opcion) {
+		case 6:
+			listaOctavos(listaPaises);
+			imprimirMenu(listaPaises, listaPartidos);
+			break;
 			
-			case 1:
-				clasificadosGrupoA(listaPaises);
-				break;
-			case 2:
-				clasificadosGrupoB(listaPaises);
-				break;
-			case 3:
-				clasificadosGrupoC(listaPaises);
-				break;
-			case 4:
-				clasificadosGrupoD(listaPaises);
-				break;
-			case 5:
-				clasificadosGrupoE(listaPaises);
-				break;
-			case 6:
-				clasificadosGrupoF(listaPaises);
-				break;
-			case 7:
-				clasificadosGrupoG(listaPaises);
-				break;
-			case 8:
-				clasificadosGrupoH(listaPaises);
-				break;
-			case 9:
-				imprimirMenu(listaPaises);
-				break;
-				
-			default:
-				imprimirMenu(listaPaises);
-				break;
-			}
-		break;
 		default:
-			imprimirMenu(listaPaises);
+			imprimirMenu(listaPaises, listaPartidos);
+			break;
+		}
+	}
+	
+	public static void elegirGrupoCalificado(LinkedList<Pais> listaPaises, LinkedList<Partido> listaPartidos) {
+		System.out.println("##########################################");
+		System.out.println("# - Clasificados por grupos");
+		System.out.println("# Escoja el Grupo que desea ver: ");
+		System.out.println("# A - Grupo A. ");
+		System.out.println("# B - Grupo B. ");
+		System.out.println("# C - Grupo C. ");
+		System.out.println("# D - Grupo D. ");
+		System.out.println("# E - Grupo E. ");
+		System.out.println("# F - Grupo F. ");
+		System.out.println("# G - Grupo G. ");
+		System.out.println("# H - Grupo H. ");
+		System.out.println("# X ← Atras ");
+		
+		Scanner entrada = new Scanner(System.in);
+		String opcion = entrada.next();
+		
+		switch (opcion) {
+		
+		case "a":
+			clasificadosGrupoA(listaPaises);
+			elegirGrupoCalificado(listaPaises, listaPartidos);
+			break;
+		case "b":
+			clasificadosGrupoB(listaPaises);
+			elegirGrupoCalificado(listaPaises, listaPartidos);
+			break;
+		case "c":
+			clasificadosGrupoC(listaPaises);
+			elegirGrupoCalificado(listaPaises, listaPartidos);
+			break;
+		case "d":
+			clasificadosGrupoD(listaPaises);
+			elegirGrupoCalificado(listaPaises, listaPartidos);
+			break;
+		case "e":
+			clasificadosGrupoE(listaPaises);
+			elegirGrupoCalificado(listaPaises, listaPartidos);
+			break;
+		case "f":
+			clasificadosGrupoF(listaPaises);
+			elegirGrupoCalificado(listaPaises, listaPartidos);
+			break;
+		case "g":
+			clasificadosGrupoG(listaPaises);
+			elegirGrupoCalificado(listaPaises, listaPartidos);
+			break;
+		case "h":
+			clasificadosGrupoH(listaPaises);
+			elegirGrupoCalificado(listaPaises, listaPartidos);
+			break;
+		case "x":
+			imprimirMenu(listaPaises, listaPartidos);
+			break;
+			
+		default:
+			imprimirMenu(listaPaises, listaPartidos);
 			break;
 		}
 	}
@@ -439,8 +466,9 @@ public class Main {
 		}else {
 			for (Pais pais : lista) {	
 				if (pais.getGrupo()== "A" && pais.isCalificado()) {
-					System.out.println(pais.getNombre()+" clasifico en puesto n° "+pais.getPuestoGrupo()+", del grupo "+pais.getGrupo());
-					System.out.println("con "+pais.getPuntos()+" puntos.\n");
+					System.out.println(pais.getNombre()+" clasifico en puesto N°: "+pais.getPuestoGrupo());
+					System.out.println("En el grupo "+pais.getGrupo());
+					System.out.println("Puntos totales: "+pais.getPuntos()+" puntos.\n");
 				}
 			}
 		}
@@ -454,8 +482,9 @@ public class Main {
 		}else {
 			for (Pais pais : lista) {	
 				if (pais.getGrupo()== "B" && pais.isCalificado()) {
-					System.out.println(pais.getNombre()+" clasifico en puesto n° "+pais.getPuestoGrupo()+", del grupo "+pais.getGrupo());
-					System.out.println("con "+pais.getPuntos()+" puntos.\n");
+					System.out.println(pais.getNombre()+" clasifico en puesto N°: "+pais.getPuestoGrupo());
+					System.out.println("En el grupo "+pais.getGrupo());
+					System.out.println("Puntos totales: "+pais.getPuntos()+" puntos.\n");
 				}
 			}
 		}
@@ -469,8 +498,9 @@ public class Main {
 		}else {
 			for (Pais pais : lista) {	
 				if (pais.getGrupo()== "C" && pais.isCalificado()) {
-					System.out.println(pais.getNombre()+" clasifico en puesto n° "+pais.getPuestoGrupo()+", del grupo "+pais.getGrupo());
-					System.out.println("con "+pais.getPuntos()+" puntos.\n");
+					System.out.println(pais.getNombre()+" clasifico en puesto N°: "+pais.getPuestoGrupo());
+					System.out.println("En el grupo "+pais.getGrupo());
+					System.out.println("Puntos totales: "+pais.getPuntos()+" puntos.\n");
 				}
 			}
 		}
@@ -484,8 +514,9 @@ public class Main {
 		}else {
 			for (Pais pais : lista) {	
 				if (pais.getGrupo()== "D" && pais.isCalificado()) {
-					System.out.println(pais.getNombre()+" clasifico en puesto n° "+pais.getPuestoGrupo()+", del grupo "+pais.getGrupo());
-					System.out.println("con "+pais.getPuntos()+" puntos.\n");
+					System.out.println(pais.getNombre()+" clasifico en puesto N°: "+pais.getPuestoGrupo());
+					System.out.println("En el grupo "+pais.getGrupo());
+					System.out.println("Puntos totales: "+pais.getPuntos()+" puntos.\n");
 				}
 			}
 		}
@@ -499,8 +530,9 @@ public class Main {
 		}else {
 			for (Pais pais : lista) {	
 				if (pais.getGrupo()== "E" && pais.isCalificado()) {
-					System.out.println(pais.getNombre()+" clasifico en puesto n° "+pais.getPuestoGrupo()+", del grupo "+pais.getGrupo());
-					System.out.println("con "+pais.getPuntos()+" puntos.\n");
+					System.out.println(pais.getNombre()+" clasifico en puesto N°: "+pais.getPuestoGrupo());
+					System.out.println("En el grupo "+pais.getGrupo());
+					System.out.println("Puntos totales: "+pais.getPuntos()+" puntos.\n");
 				}
 			}
 		}
@@ -514,8 +546,9 @@ public class Main {
 		}else {
 			for (Pais pais : lista) {	
 				if (pais.getGrupo()== "F" && pais.isCalificado()) {
-					System.out.println(pais.getNombre()+" clasifico en puesto n° "+pais.getPuestoGrupo()+", del grupo "+pais.getGrupo());
-					System.out.println("con "+pais.getPuntos()+" puntos.\n");
+					System.out.println(pais.getNombre()+" clasifico en puesto N°: "+pais.getPuestoGrupo());
+					System.out.println("En el grupo "+pais.getGrupo());
+					System.out.println("Puntos totales: "+pais.getPuntos()+" puntos.\n");
 				}
 			}
 		}
@@ -529,8 +562,9 @@ public class Main {
 		}else {
 			for (Pais pais : lista) {	
 				if (pais.getGrupo()== "G" && pais.isCalificado()) {
-					System.out.println(pais.getNombre()+" clasifico en puesto n° "+pais.getPuestoGrupo()+", del grupo "+pais.getGrupo());
-					System.out.println("con "+pais.getPuntos()+" puntos.\n");
+					System.out.println(pais.getNombre()+" clasifico en puesto N°: "+pais.getPuestoGrupo());
+					System.out.println("En el grupo "+pais.getGrupo());
+					System.out.println("Puntos totales: "+pais.getPuntos()+" puntos.\n");
 				}
 			}
 		}
@@ -544,8 +578,9 @@ public class Main {
 		}else {
 			for (Pais pais : lista) {	
 				if (pais.getGrupo()== "H" && pais.isCalificado()) {
-					System.out.println(pais.getNombre()+" clasifico en puesto n° "+pais.getPuestoGrupo()+", del grupo "+pais.getGrupo());
-					System.out.println("con "+pais.getPuntos()+" puntos.\n");				}
+					System.out.println(pais.getNombre()+" clasifico en puesto N°: "+pais.getPuestoGrupo());
+					System.out.println("En el grupo "+pais.getGrupo());
+					System.out.println("Puntos totales: "+pais.getPuntos()+" puntos.\n");			}
 			}
 		}
 		System.out.println(); //Espacio separador

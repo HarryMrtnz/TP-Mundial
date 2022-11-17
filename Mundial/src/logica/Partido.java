@@ -70,7 +70,7 @@ public class Partido {
 		this.detalle = detalle;
 	}
 	
-	//Metodo para jugar en face de Grupos, donde no se desempata. ↓
+	//Metodo para jugar en face de Grupos, donde no se desempata y clasificar por puntos
 	public void jugar1(Pais pais1, Pais pais2) { 
 		int gol1, gol2, tiempoExtra; //Goles de cada equipo
 		gol1 =(int) (Math.random()*6 );
@@ -104,7 +104,7 @@ public class Partido {
 					+ "Duracion total de partido: "+this.getDuracion()+" minutos." ;
 		}	
 	}
-	//
+	//metodo para jugar en octavos, pais que gana pasa de ronda, empate van a penales!
 	public void jugar2(Pais pais1, Pais pais2) {
 		int gol1, gol2, tiempoExtra; //Goles de cada equipo
 		gol1 =(int) (Math.random()*6 );
