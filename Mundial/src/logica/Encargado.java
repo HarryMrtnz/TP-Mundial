@@ -42,8 +42,4 @@ public class Encargado {
 		this.apellido = apellido;
 	}
 	
-	
-
-	
-	
 }
