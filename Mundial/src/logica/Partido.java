@@ -85,23 +85,20 @@ public class Partido {
 		//Pais que gana suma 3 puntos, pais que pierde no suma puntos, partido empatado ambos suman 1 punto
 		if (gol1 > gol2) {
 			pais1.setPuntos(pais1.getPuntos()+3);
-			this.detalle = "Gano " + pais1.getNombre()+"\n"
-					+ " Goles: \n" + pais1.getNombre()+" = "+gol1+"\n" 
-					+ pais2.getNombre()+" = "+ gol2+"\n" 
-					+ "Duracion total de partido: "+this.getDuracion()+" minutos." ;			
+			this.detalle = "\n Gano " + pais1.getNombre()+"\n"
+					+ " Resultado: "+ pais1.getNombre()+" "+gol1+" | "+ gol2 +" "+ pais2.getNombre()+"\n" 
+					+ "Duracion total de partido: "+this.getDuracion()+" minutos.\n" ;		
 		} else if(gol1 < gol2){
 			pais2.setPuntos(pais2.getPuntos()+3);
-			this.detalle = "Gano " + pais2.getNombre()+"\n"
-					+ " Goles: \n"+ pais1.getNombre()+" = "+gol1+"\n" 
-					+ pais2.getNombre()+" = "+ gol2+"\n" 
-					+ "Duracion total de partido: "+this.getDuracion()+" minutos." ;
+			this.detalle = "\n Gano " + pais2.getNombre()+"\n"
+					+ " Resultado: "+ pais1.getNombre()+" "+gol1+" | "+ gol2 +" "+ pais2.getNombre()+"\n" 
+					+ "Duracion total de partido: "+this.getDuracion()+" minutos.\n" ;
 		} else {
 			pais1.setPuntos(pais1.getPuntos()+1);
 			pais2.setPuntos(pais2.getPuntos()+1);
-			this.detalle = "Partido empatado \n"
-					+ " Goles: \n"+ pais1.getNombre()+" = "+gol1+"\n" 
-					+ pais2.getNombre()+" = "+ gol2+"\n" 
-					+ "Duracion total de partido: "+this.getDuracion()+" minutos." ;
+			this.detalle = "\n Partido empatado \n"
+					+ " Resultado: "+ pais1.getNombre()+" "+gol1+" | "+ gol2 +" "+ pais2.getNombre()+"\n" 
+					+ "Duracion total de partido: "+this.getDuracion()+" minutos.\n" ;
 		}	
 	}
 	//metodo para jugar en octavos, pais que gana pasa de ronda, empate van a penales!
@@ -118,13 +115,20 @@ public class Partido {
 		//Pais que gana suma 3 puntos, pais que pierde no suma puntos, partido empatado ambos suman 1 punto
 		if (gol1 > gol2) {
 			pais2.setCalificado(false);
-//			System.out.println("Ha ganado " + pais1.getNombre()+"\n");
+			this.detalle = "\n Gano " + pais1.getNombre()+"\n"
+					+ " Resultado: "+ pais1.getNombre()+" "+gol1+" | "+ gol2 +" "+ pais2.getNombre()+"\n" 
+					+ "Duracion total de partido: "+this.getDuracion()+" minutos." ;	
 		} else if(gol1 < gol2){
 			pais1.setCalificado(false);
-//			System.out.println("Ha ganado " + pais2.getNombre()+"\n");
+			this.detalle = "\n Gano " + pais2.getNombre()+"\n"
+					+ " Resultado: "+ pais1.getNombre()+" "+gol1+" | "+ gol2 +" "+ pais2.getNombre()+"\n" 
+					+ "Duracion total de partido: "+this.getDuracion()+" minutos." ;
 		} else { //empate
+	
+			this.detalle = "\n Partido empatado.\n "
+					+ " Resultado: "+ pais1.getNombre()+" "+gol1+" | "+ gol2 +" "+ pais2.getNombre()+"\n" 
+					+ " Definicion por penales";
 			penales(pais1, pais2);
-			this.detalle = "Partido empatado, se define por penales.";
 		}
 	}
 	
@@ -139,18 +143,14 @@ public class Partido {
 		pais2.setGoles(pais2.getGoles()+gol2);
 		if (gol1 > gol2) {
 			pais2.setCalificado(false);
-			pais1.setPuntos(pais1.getPuntos()+3);
-			this.detalle = "Gano " + pais1.getNombre()+"\n"
-					+ " Goles: \n" + pais1.getNombre()+" = "+gol1+"\n" 
-					+ pais2.getNombre()+" = "+ gol2+"\n" 
-					+ "Duracion total de partido: "+this.getDuracion()+" minutos." ;	
+			this.detalle = "\n Gano " + pais1.getNombre()+"\n"
+					+ " Resultado: "+ pais1.getNombre()+" "+gol1+" | "+ gol2 +" "+ pais2.getNombre()+"\n" 
+					+ "Duracion total de partido: "+this.getDuracion()+" minutos.\n" ;	
 		} else {
 			pais1.setCalificado(false);
-			pais2.setPuntos(pais2.getPuntos()+3);
-			this.detalle = "Gano " + pais2.getNombre()+"\n"
-					+ " Goles: \n"+ pais1.getNombre()+" = "+gol1+"\n" 
-					+ pais2.getNombre()+" = "+ gol2+"\n" 
-					+ "Duracion total de partido: "+this.getDuracion()+" minutos." ;
+			this.detalle = "\n Gano " + pais2.getNombre()+"\n"
+					+ " Resultado: "+ pais1.getNombre()+" "+gol1+" | "+ gol2 +" "+ pais2.getNombre()+"\n" 
+					+ "Duracion total de partido: "+this.getDuracion()+" minutos.\n" ;
 		} 
 	}
 }
