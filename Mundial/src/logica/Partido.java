@@ -110,6 +110,7 @@ public class Partido {
 		
 		tiempoExtra =(int) (Math.random()*10 );
 		this.setDuracion(90+tiempoExtra);
+		this.nombre = pais1.getNombre()+" vs " +pais2.getNombre();
 		
 		pais1.setGoles(pais1.getGoles()+gol1);
 		pais2.setGoles(pais2.getGoles()+gol2);

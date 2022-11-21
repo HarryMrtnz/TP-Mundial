@@ -11,7 +11,13 @@ public class Main {
 
 	public static void main(String[] args) {
 		
+		System.out.println(" - PROGRAMACION ORIENTADA A OBJETOS - TP2"
+				+ "\n	  - MUNDIAL QATAR 2022 -"
+				+ "\n__________________________________________\n");
+		
 		Encargado e1 = new Encargado ("34704934", "Harry", "Mrtnz");
+		
+		System.out.println("...Añadiendo paises que participaran del Mundial.");
 		//Grupo A
 		Pais qatar  = new Pais ("1", "Qatar", 0,"A", true );
 		Pais ecuador = new Pais ("2", "Ecuador", 0, "A", true );
@@ -53,7 +59,7 @@ public class Main {
 		Pais uruguay = new Pais ("31", "Uruguay", 0, "H", true );
 		Pais korea_republic = new Pais ("32", "Korea Republic", 0, "H", true );
 		
-		
+		System.out.println("...Guardando paises en listas.");
 		LinkedList<Pais> listaPaises = new LinkedList<Pais>();
 		/* A */	listaPaises.add(qatar);		listaPaises.add(ecuador);	   listaPaises.add(senegal);	 listaPaises.add(netherlands);
 		/* B */	listaPaises.add(england);	listaPaises.add(ir_iran);	   listaPaises.add(usa);		 listaPaises.add(wales);
@@ -64,6 +70,8 @@ public class Main {
 		/* G */	listaPaises.add(brazil);	listaPaises.add(serbia);	   listaPaises.add(switzerland); listaPaises.add(cameroon);
 		/* H */	listaPaises.add(portugal);	listaPaises.add(ghana);	 	   listaPaises.add(uruguay);	 listaPaises.add(korea_republic);
 
+		System.out.println("...Generando partidos de grupo.");
+		System.out.println("...Guardando partidos de grupo en lista.");
 		LinkedList<Partido> listaPartidos = new LinkedList<Partido>();
 		Partido p1 = new Partido (1, qatar, ecuador);				listaPartidos.add(p1);	
 		Partido p2 = new Partido (2, senegal, netherlands);			listaPartidos.add(p2);	
@@ -120,7 +128,7 @@ public class Main {
 		Partido p46 = new Partido (46, korea_republic, ghana);		listaPartidos.add(p46);
 		Partido p47 = new Partido (47, korea_republic, portugal);	listaPartidos.add(p47);
 		Partido p48 = new Partido (48, ghana, uruguay);				listaPartidos.add(p48);
-		
+		System.out.println("...Calculando puestos de face de grupos.");
 //		JUGAR FACE GRUPOS
 		p1.jugar1(qatar, ecuador);			 p2.jugar1(senegal, netherlands);	p3.jugar1(qatar, senegal);
 		p4.jugar1(netherlands, ecuador);	 p5.jugar1(netherlands, qatar); 	p6.jugar1(ecuador, senegal);
@@ -154,39 +162,41 @@ public class Main {
 		p46.jugar1(korea_republic, ghana);	 p47.jugar1(korea_republic, portugal);   p48.jugar1(ghana, uruguay);
 		calcularPuestoGrupos(portugal, ghana, uruguay, korea_republic);
 		
+		System.out.println("...Lista de face Octavos terminada.");
 		LinkedList<Pais> listaOctavos = new LinkedList<Pais>();
-		
+		System.out.println("...Guardando equipos a face Octavos.");
 		for (Pais pais : listaPaises) {
 			if (pais.isCalificado()) {
 				listaOctavos.add(pais);
 			}
 		}
-		
+		System.out.println("...Generando partidos de Octavos.");
 		faceOctavos(listaOctavos, listaPartidos);
-		
+		System.out.println("...Lista de face Cuartos terminada.");
 		LinkedList<Pais> listaCuartos = new LinkedList<Pais>();
-		
+		System.out.println("...Guardando equipos a face Cuartos.");
 		for (Pais pais : listaOctavos) {
 			if (pais.isCalificado()) {
 				listaCuartos.add(pais);
 			}
 		}
-		
+		System.out.println("...Lista de face Cuartos terminada.");
 		faceCuartos(listaCuartos, listaPartidos);
-		
+		System.out.println("...Lista de face Semifinal terminada.");
 		LinkedList<Pais> listaSemifinal = new LinkedList<Pais>();
-		
+		System.out.println("...Guardando equipos a face Semifinal.");
 		for (Pais pais : listaCuartos) {
 			if (pais.isCalificado()) {
 				listaSemifinal.add(pais);
 			}
 		}
-		
+		System.out.println("...Generando partidos de Semifinal.");
 		faceSemifinal(listaSemifinal, listaPartidos);
-		
+		System.out.println("...Lista de partido por Tercer Puesto terminada.");
+		System.out.println("...Lista de partido final terminada.");
 		LinkedList<Pais> listaTercerPuesto = new LinkedList<Pais>();
 		LinkedList<Pais> listaFinal = new LinkedList<Pais>();
-		
+		System.out.println("...Calculando quienes pasan a la final.");
 		for (Pais pais : listaSemifinal) {
 			if (pais.isCalificado()) {
 				listaFinal.add(pais);
@@ -194,7 +204,7 @@ public class Main {
 				listaTercerPuesto.add(pais);
 			}
 		}
-
+		System.out.println("...Generando partidos por Tercer Puesto.");
 		faceTercerPuesto(listaTercerPuesto, listaPartidos);
 		
 		LinkedList<Pais> tercero = new LinkedList<Pais>();
@@ -204,12 +214,12 @@ public class Main {
 				tercero.add(pais);
 			}
 		}
-		
+		System.out.println("...Generando partido final");
 		faceFinal(listaFinal, listaPartidos);
 		
 		LinkedList<Pais> segundo = new LinkedList<Pais>();
 		LinkedList<Pais> ganador = new LinkedList<Pais>();
-
+		System.out.println("...Guardando informacion.");
 		for (Pais pais : listaFinal) {
 			if (pais.isCalificado()) {
 				ganador.add(pais);
@@ -217,7 +227,7 @@ public class Main {
 				segundo.add(pais);
 			}
 		}
-
+		System.out.println("MUNDIAL GENERADO EXITOSAMENTE.");
 			
 			
 		
@@ -234,19 +244,29 @@ public class Main {
 									LinkedList<Pais> segundo, LinkedList<Pais> ganador){
 		System.out.println("__________________________________________");
 		System.out.println("| -  Menu - Mundial Qatar 2022\n|");
-		System.out.println("| Escoja la opcion deseada: ");
-		System.out.println("|  1 - Mostrar todos los equipos ");
-		System.out.println("|  2 - Buscar equipos por nombre");
-		System.out.println("|  3 - Buscar equipos por grupo ");
-		System.out.println("|");
-		System.out.println("|  4 - Ver clasificados por grupo");
-		System.out.println("|  5 - Buscar partidos por grupo");
-		System.out.println("|  6 - Ver clasificados a Octavos");
-		System.out.println("|  7 - Ver clasificados a Cuartos ");
-		System.out.println("|  8 - Ver clasificados a Semifinal ");
-		System.out.println("|  9 - Ver clasificados al Tercer Puesto ");
-		System.out.println("| 10 - Ver clasificados a la FINAL ");
-		System.out.println("| 11 - Ver TOP TRES del Mundial ");
+		System.out.println("| - Escoja la opcion deseada:");
+		System.out.println("|   1- Mostrar todos los equipos.");
+		System.out.println("|   2- Buscar equipos por nombre.");
+		System.out.println("|   3- Buscar equipos por grupo.\n|");
+		System.out.println("| - Face de Grupos, ver: ");
+		System.out.println("|   4- Partidos por grupo.");
+		System.out.println("|   5- Equipos clasificados.\n|");
+		System.out.println("| - Face de Octavos, ver: ");
+		System.out.println("|   6- Equipos clasificados a Octavos.");
+		System.out.println("|   7- Partidos de Octavos.\n|");
+		System.out.println("| - Face de Cuartos, ver: ");
+		System.out.println("|   8- Equipos clasificados a Cuartos.");
+		System.out.println("|   9- Partidos de Cuartos.\n|");
+		System.out.println("| - Face Semifinal, ver: ");
+		System.out.println("|  10- Equipos clasificados a Semifinales.");
+		System.out.println("|  11- Partidos de Semifinal\n|");
+		System.out.println("| - Face Final, ver: ");
+		System.out.println("|  12- Clasificados a Tercer Puesto.");
+		System.out.println("|  13- Partido por Tercer Puesto");
+		System.out.println("|  14- Clasificados a la Final.");
+		System.out.println("|  15- Partido final.");
+		System.out.println("|  16- Podio Mundial Qatar 2022\n|");
+		System.out.println("|  17- Buscar partidos por pais (No terminado)");
 		Scanner entrada = new Scanner(System.in);
 		int opcion = entrada.nextInt();
 		
@@ -267,12 +287,12 @@ public class Main {
 			break;
 			
 		case 4:
-			clasificadosGrupo(listaPaises, listaPartidos, listaOctavos, listaCuartos, listaSemifinal, listaTercerPuesto, listaFinal, tercero, segundo, ganador);
+			buscarPartidoGrupo(listaPartidos, listaPaises);
+			imprimirMenu(listaPaises, listaPartidos, listaOctavos, listaCuartos, listaSemifinal, listaTercerPuesto, listaFinal, tercero, segundo, ganador);
 			break;
 		
 		case 5:
-			buscarPartidoGrupo(listaPartidos, listaPaises);
-			imprimirMenu(listaPaises, listaPartidos, listaOctavos, listaCuartos, listaSemifinal, listaTercerPuesto, listaFinal, tercero, segundo, ganador);
+			clasificadosGrupo(listaPaises, listaPartidos, listaOctavos, listaCuartos, listaSemifinal, listaTercerPuesto, listaFinal, tercero, segundo, ganador);
 			break;
 			
 		case 6:
@@ -281,27 +301,57 @@ public class Main {
 			break;
 			
 		case 7:
-			listaCuartos(listaCuartos);
+			verPartidosOctavos(listaPartidos);
 			imprimirMenu(listaPaises, listaPartidos, listaOctavos, listaCuartos, listaSemifinal, listaTercerPuesto, listaFinal, tercero, segundo, ganador);
 			break;
 			
 		case 8:
-			listaSemifinal(listaSemifinal);
+			listaCuartos(listaCuartos);
 			imprimirMenu(listaPaises, listaPartidos, listaOctavos, listaCuartos, listaSemifinal, listaTercerPuesto, listaFinal, tercero, segundo, ganador);
 			break;
 			
 		case 9:
-			listaTercerPuesto(listaTercerPuesto);
+			verPartidosCuartos(listaPartidos);
 			imprimirMenu(listaPaises, listaPartidos, listaOctavos, listaCuartos, listaSemifinal, listaTercerPuesto, listaFinal, tercero, segundo, ganador);
 			break;
 			
 		case 10:
-			listaFinal(listaFinal);
+			listaSemifinal(listaSemifinal); 
 			imprimirMenu(listaPaises, listaPartidos, listaOctavos, listaCuartos, listaSemifinal, listaTercerPuesto, listaFinal, tercero, segundo, ganador);
 			break;
 			
 		case 11:
+			verPartidosSemifinales(listaPartidos); 
+			imprimirMenu(listaPaises, listaPartidos, listaOctavos, listaCuartos, listaSemifinal, listaTercerPuesto, listaFinal, tercero, segundo, ganador);
+			break;
+			
+		case 12:
+			listaTercerPuesto(listaTercerPuesto);
+			imprimirMenu(listaPaises, listaPartidos, listaOctavos, listaCuartos, listaSemifinal, listaTercerPuesto, listaFinal, tercero, segundo, ganador);
+			break;
+			
+		case 13:
+			verPartidoTercerPuesto(listaPartidos);
+			imprimirMenu(listaPaises, listaPartidos, listaOctavos, listaCuartos, listaSemifinal, listaTercerPuesto, listaFinal, tercero, segundo, ganador);
+			break;
+			
+		case 14:
+			listaFinal(listaFinal);
+			imprimirMenu(listaPaises, listaPartidos, listaOctavos, listaCuartos, listaSemifinal, listaTercerPuesto, listaFinal, tercero, segundo, ganador);
+			break;
+			
+		case 15:
+			verFinal(listaPartidos);
+			imprimirMenu(listaPaises, listaPartidos, listaOctavos, listaCuartos, listaSemifinal, listaTercerPuesto, listaFinal, tercero, segundo, ganador);
+			break;
+			
+		case 16:
 			verTopTres(tercero, segundo, ganador);	
+			imprimirMenu(listaPaises, listaPartidos, listaOctavos, listaCuartos, listaSemifinal, listaTercerPuesto, listaFinal, tercero, segundo, ganador);
+			break;
+			
+		case 17:
+			BuscarPartidoEquipos();
 			imprimirMenu(listaPaises, listaPartidos, listaOctavos, listaCuartos, listaSemifinal, listaTercerPuesto, listaFinal, tercero, segundo, ganador);
 			break;
 			
@@ -402,9 +452,10 @@ public class Main {
 		if(paises.isEmpty()) {
 			System.out.println("Lista vacia pá");
 		}else {
+			System.out.println("\nPaises del grupo elegido:");
 			for (Pais pais : paises) {
 				if(pais.getGrupo().equalsIgnoreCase(grupo)) {
-					System.out.println(pais.getNombre());
+					System.out.println(" → "+pais.getNombre());
 //				}else {
 //					System.out.println("No se ha encontrado ningun resultado"
 //							+ "\nVuelve a intentar");
@@ -567,7 +618,7 @@ public class Main {
 		
 		}else {
 			for (Pais pais : paises) {
-				if(pais.getGrupo().equalsIgnoreCase(grupo) && pais.isCalificado()) {
+				if(pais.getGrupo().equalsIgnoreCase(grupo)) {
 					System.out.println(pais.getNombre()+" clasifico en puesto N°: "+pais.getPuestoGrupo());
 					System.out.println("En el grupo "+pais.getGrupo());
 					System.out.println("Puntos totales: "+pais.getPuntos()+" puntos.\n");			
@@ -577,7 +628,7 @@ public class Main {
 		if (grupo.equalsIgnoreCase("x")) {
 			imprimirMenu(paises, partidos, octavos, cuartos, semifinal, tercerPuesto, listaFinal, tercero, segundo, ganador);
 		} else {
-			imprimirMenu(paises, partidos, octavos, cuartos, semifinal, tercerPuesto, listaFinal, tercero, segundo, ganador);
+			clasificadosGrupo(paises, partidos, octavos, cuartos, semifinal, tercerPuesto, listaFinal, tercero, segundo, ganador);
 		}
 	}
 
@@ -904,24 +955,73 @@ public class Main {
 		}
 	}
 
-	
 	public static void verPartidosOctavos (LinkedList<Partido> partidos) {
-		
+		if(partidos.isEmpty()) {
+			System.out.println( "Lista vacia pá");
+		}else {
+			for (Partido partido : partidos) {
+				if (partido.getId()==49 || partido.getId()==50 || partido.getId()==51 || partido.getId()==52|| partido.getId()==53|| partido.getId()==54||
+						partido.getId()==55|| partido.getId()==56  ) {
+					System.out.println("_________________________________");
+					System.out.println(partido.getNombre()+ partido.getDetalle());
+				}
+			}
+		}
 	}
 	
 	public static void verPartidosCuartos(LinkedList<Partido> partidos) {
-		
+		if(partidos.isEmpty()) {
+			System.out.println( "Lista vacia pá");
+		}else {
+			for (Partido partido : partidos) {
+				if (partido.getId()==57 || partido.getId()==58 || partido.getId()==59 || partido.getId()==60){
+					System.out.println("_________________________________");
+					System.out.println(partido.getNombre()+ partido.getDetalle());
+				}
+			}
+		}
 	}
 
 	public static void verPartidosSemifinales(LinkedList<Partido> partidos) {
-		
+		if(partidos.isEmpty()) {
+			System.out.println( "Lista vacia pá");
+		}else {
+			for (Partido partido : partidos) {
+				if (partido.getId()==61 || partido.getId()==62 ){
+					System.out.println("_________________________________");
+					System.out.println(partido.getNombre()+ partido.getDetalle());
+				}
+			}
+		}
 	}
 	
 	public static void verPartidoTercerPuesto (LinkedList<Partido> partidos) {
-		
+		if(partidos.isEmpty()) {
+			System.out.println( "Lista vacia pá");
+		}else {
+			for (Partido partido : partidos) {
+				if (partido.getId()==63){
+					System.out.println("_________________________________");
+					System.out.println(partido.getNombre()+ partido.getDetalle());
+				}
+			}
+		}
 	}
 	
 	public static void verFinal (LinkedList<Partido> partidos) {
+		if(partidos.isEmpty()) {
+			System.out.println( "Lista vacia pá");
+		}else {
+			for (Partido partido : partidos) {
+				if (partido.getId()==64){
+					System.out.println("_________________________________");
+					System.out.println(partido.getNombre()+ partido.getDetalle());
+				}
+			}
+		}
+	}
+
+	public static void BuscarPartidoEquipos() {
 		
 	}
 
