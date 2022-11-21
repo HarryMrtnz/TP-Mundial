@@ -59,7 +59,6 @@ public class Main {
 		Pais uruguay = new Pais ("31", "Uruguay", 0, "H", true );
 		Pais korea_republic = new Pais ("32", "Korea Republic", 0, "H", true );
 		
-		System.out.println("...Guardando paises en listas.");
 		LinkedList<Pais> listaPaises = new LinkedList<Pais>();
 		/* A */	listaPaises.add(qatar);		listaPaises.add(ecuador);	   listaPaises.add(senegal);	 listaPaises.add(netherlands);
 		/* B */	listaPaises.add(england);	listaPaises.add(ir_iran);	   listaPaises.add(usa);		 listaPaises.add(wales);
@@ -71,7 +70,6 @@ public class Main {
 		/* H */	listaPaises.add(portugal);	listaPaises.add(ghana);	 	   listaPaises.add(uruguay);	 listaPaises.add(korea_republic);
 
 		System.out.println("...Generando partidos de grupo.");
-		System.out.println("...Guardando partidos de grupo en lista.");
 		LinkedList<Partido> listaPartidos = new LinkedList<Partido>();
 		Partido p1 = new Partido (1, qatar, ecuador);				listaPartidos.add(p1);	
 		Partido p2 = new Partido (2, senegal, netherlands);			listaPartidos.add(p2);	
@@ -164,17 +162,14 @@ public class Main {
 		
 		System.out.println("...Lista de face Octavos terminada.");
 		LinkedList<Pais> listaOctavos = new LinkedList<Pais>();
-		System.out.println("...Guardando equipos a face Octavos.");
 		for (Pais pais : listaPaises) {
 			if (pais.isCalificado()) {
 				listaOctavos.add(pais);
 			}
 		}
-		System.out.println("...Generando partidos de Octavos.");
 		faceOctavos(listaOctavos, listaPartidos);
 		System.out.println("...Lista de face Cuartos terminada.");
 		LinkedList<Pais> listaCuartos = new LinkedList<Pais>();
-		System.out.println("...Guardando equipos a face Cuartos.");
 		for (Pais pais : listaOctavos) {
 			if (pais.isCalificado()) {
 				listaCuartos.add(pais);
@@ -184,13 +179,11 @@ public class Main {
 		faceCuartos(listaCuartos, listaPartidos);
 		System.out.println("...Lista de face Semifinal terminada.");
 		LinkedList<Pais> listaSemifinal = new LinkedList<Pais>();
-		System.out.println("...Guardando equipos a face Semifinal.");
 		for (Pais pais : listaCuartos) {
 			if (pais.isCalificado()) {
 				listaSemifinal.add(pais);
 			}
 		}
-		System.out.println("...Generando partidos de Semifinal.");
 		faceSemifinal(listaSemifinal, listaPartidos);
 		System.out.println("...Lista de partido por Tercer Puesto terminada.");
 		System.out.println("...Lista de partido final terminada.");
@@ -204,7 +197,6 @@ public class Main {
 				listaTercerPuesto.add(pais);
 			}
 		}
-		System.out.println("...Generando partidos por Tercer Puesto.");
 		faceTercerPuesto(listaTercerPuesto, listaPartidos);
 		
 		LinkedList<Pais> tercero = new LinkedList<Pais>();
@@ -214,7 +206,6 @@ public class Main {
 				tercero.add(pais);
 			}
 		}
-		System.out.println("...Generando partido final");
 		faceFinal(listaFinal, listaPartidos);
 		
 		LinkedList<Pais> segundo = new LinkedList<Pais>();
@@ -227,11 +218,13 @@ public class Main {
 				segundo.add(pais);
 			}
 		}
+		//Total de 64 partidos:
+		// Face de grupos: 1 al 48 | Face octavos: 49 a 56 | Face cuartos 57 a 60 |
+		// Semifinales 61 y 62     | Tercer puesto: 63	   | FINAL: 64
 		System.out.println("MUNDIAL GENERADO EXITOSAMENTE.");
 			
-			
-		
-		
+		///////////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////////
 		
 		imprimirMenu(listaPaises, listaPartidos, listaOctavos, listaCuartos, listaSemifinal, listaTercerPuesto, listaFinal, tercero, segundo, ganador);
 		
@@ -346,12 +339,12 @@ public class Main {
 			break;
 			
 		case 16:
-			verTopTres(tercero, segundo, ganador);	
+			verPodio(tercero, segundo, ganador);	
 			imprimirMenu(listaPaises, listaPartidos, listaOctavos, listaCuartos, listaSemifinal, listaTercerPuesto, listaFinal, tercero, segundo, ganador);
 			break;
 			
 		case 17:
-			BuscarPartidoEquipos();
+			BuscarPartidoEquipos(listaPartidos);
 			imprimirMenu(listaPaises, listaPartidos, listaOctavos, listaCuartos, listaSemifinal, listaTercerPuesto, listaFinal, tercero, segundo, ganador);
 			break;
 			
@@ -491,115 +484,13 @@ public class Main {
 		
 		Scanner entrada = new Scanner(System.in);
 		String grupo = entrada.next();
-
-		if(partidos.isEmpty()) {
-			System.out.println( "Lista vacia pá");
-		}else {
-			for (Partido partido : partidos) { // GRUPO A
-				if (grupo.equalsIgnoreCase("A"))
-					if (partido.getId()==1 || partido.getId()==2 || partido.getId()==3 || partido.getId()==4|| partido.getId()==5|| partido.getId()==6  ) {
-						System.out.println("_________________________________");
-						System.out.println(partido.getNombre()+ partido.getDetalle());
-					}
-			}
-			for (Pais pais: paises) {
-				if (grupo.equalsIgnoreCase("A") && pais.getGrupo()=="A") {
-					System.out.println(" → "+pais.getNombre()+ " consiguio el puesto " +pais.getPuestoGrupo());
-				}
-			}
 			
-			for (Partido partido : partidos) {// GRUPO B
-				if (grupo.equalsIgnoreCase("B"))
-					if (partido.getId()==7 || partido.getId()==8 || partido.getId()==9 || partido.getId()==10|| partido.getId()==11|| partido.getId()==12  ) {
-						System.out.println("_________________________________");
-						System.out.println(partido.getNombre()+ partido.getDetalle());
-					}
-			}
-			for (Pais pais: paises) {
-				if (grupo.equalsIgnoreCase("B") && pais.getGrupo()=="B") {
-					System.out.println(" → "+pais.getNombre()+ " consiguio el puesto " +pais.getPuestoGrupo());
-				}
-			}
-			
-			for (Partido partido : partidos) {// GRUPO C
-				if (grupo.equalsIgnoreCase("C"))
-					if (partido.getId()==13 || partido.getId()==14 || partido.getId()==15 || partido.getId()==16|| partido.getId()==17|| partido.getId()==18  ) {
-						System.out.println("_________________________________");
-						System.out.println(partido.getNombre()+ partido.getDetalle());
-					}
-			}
-			for (Pais pais: paises) {
-				if (grupo.equalsIgnoreCase("C") && pais.getGrupo()=="C") {
-					System.out.println(" → "+pais.getNombre()+ " consiguio el puesto " +pais.getPuestoGrupo());
-				}
-			}
-			
-			for (Partido partido : partidos) {// GRUPO D
-				if (grupo.equalsIgnoreCase("D"))
-					if (partido.getId()==19 || partido.getId()==20 || partido.getId()==21 || partido.getId()==22|| partido.getId()==23|| partido.getId()==24  ) {
-						System.out.println("_________________________________");
-						System.out.println(partido.getNombre()+ partido.getDetalle());
-					}
-			}
-			for (Pais pais: paises) {
-				if (grupo.equalsIgnoreCase("D") && pais.getGrupo()=="D") {
-					System.out.println(" → "+pais.getNombre()+ " consiguio el puesto " +pais.getPuestoGrupo());
-				}
-			}
-			
-			for (Partido partido : partidos) {// GRUPO E
-				if (grupo.equalsIgnoreCase("E"))
-					if (partido.getId()==25 || partido.getId()==26 || partido.getId()==27 || partido.getId()==28|| partido.getId()==29|| partido.getId()==30  ) {
-						System.out.println("_________________________________");
-						System.out.println(partido.getNombre()+ partido.getDetalle());
-					}
-			}
-			for (Pais pais: paises) {
-				if (grupo.equalsIgnoreCase("E") && pais.getGrupo()=="E") {
-					System.out.println(" → "+pais.getNombre()+ " consiguio el puesto " +pais.getPuestoGrupo());
-				}
-			}
-			
-			for (Partido partido : partidos) {// GRUPO F
-				if (grupo.equalsIgnoreCase("F"))
-					if (partido.getId()==31 || partido.getId()==32 || partido.getId()==33 || partido.getId()==34|| partido.getId()==35|| partido.getId()==36  ) {
-						System.out.println("_________________________________");
-						System.out.println(partido.getNombre()+ partido.getDetalle());
-					}
-			}
-			for (Pais pais: paises) {
-				if (grupo.equalsIgnoreCase("F") && pais.getGrupo()=="F") {
-					System.out.println(" → "+pais.getNombre()+ " consiguio el puesto " +pais.getPuestoGrupo());
-				}
-			}
-			
-			for (Partido partido : partidos) {// GRUPO G
-				if (grupo.equalsIgnoreCase("G"))
-					if (partido.getId()==37 || partido.getId()==38 || partido.getId()==39 || partido.getId()==40|| partido.getId()==41|| partido.getId()==42  ) {
-						System.out.println("_________________________________");
-						System.out.println(partido.getNombre()+ partido.getDetalle());
-					}
-			}
-			for (Pais pais: paises) {
-				if (grupo.equalsIgnoreCase("G") && pais.getGrupo()=="G") {
-					System.out.println(" → "+pais.getNombre()+ " consiguio el puesto " +pais.getPuestoGrupo());
-				}
-			}
-			
-			for (Partido partido : partidos) {// GRUPO H
-				if (grupo.equalsIgnoreCase("H"))
-					if (partido.getId()==43 || partido.getId()==44 || partido.getId()==45 || partido.getId()==46|| partido.getId()==47|| partido.getId()==48  ) {
-						System.out.println("_________________________________");
-						System.out.println(partido.getNombre()+ partido.getDetalle());
-					}
-			}
-			for (Pais pais: paises) {
-				if (grupo.equalsIgnoreCase("H") && pais.getGrupo()=="H") {
-					System.out.println(" → "+pais.getNombre()+ " consiguio el puesto " +pais.getPuestoGrupo());
-				}
+		for	(Partido partido : partidos) {
+			if (partido.getPais1().getGrupo().equalsIgnoreCase(grupo) && partido.getId() <=48){
+				System.out.println("_________________________________");
+				System.out.println(partido.getNombre()+ partido.getDetalle());
 			}
 		}
-		System.out.println(""); //espacio separador
 	}
 	
 	public static void clasificadosGrupo(LinkedList<Pais> paises, LinkedList<Partido> partidos, LinkedList<Pais> octavos, 
@@ -929,30 +820,30 @@ public class Main {
 						if(pais2.getPartidoSemifinal()=="Gano2") {
 						Partido p64 = new Partido(64, pais1, pais2);
 						p64.jugar2(pais1, pais2);	listaPartidos.add(p64);
-
 					}
 				}
 			}
 		}
 	}
 	
-	public static void verTopTres (LinkedList<Pais> tercero, LinkedList<Pais> segundo, LinkedList<Pais> primero) {
+	public static void verPodio (LinkedList<Pais> tercero, LinkedList<Pais> segundo, LinkedList<Pais> primero) {
 
 		for (Pais pais3 : tercero ) {
-				System.out.println("Tercer Puesto de Mundial QATAR 2022:\n"
-						+ "  Equipo "+pais3.getId()+ " = "+ pais3.getNombre() + " | Grupo: " + pais3.getGrupo()
-						+"\n  Goles totales realizados: "+pais3.getGoles()+"\n");
+			System.out.println("_________________________________");
+			System.out.println("Tercer Puesto de Mundial QATAR 2022:\n"
+					+ "  Equipo "+pais3.getId()+ " = "+ pais3.getNombre() + " | Grupo: " + pais3.getGrupo()
+					+"\n  Goles totales realizados: "+pais3.getGoles()+"\n");
 		}
 		for (Pais pais2 : segundo) {
-				System.out.println("Segundo Puesto de Mundial QATAR 2022:\n"
-						+ "  Equipo "+pais2.getId()+ " = "+ pais2.getNombre() + " | Grupo: " + pais2.getGrupo()
-						+"\n  Goles totales realizados: "+pais2.getGoles()+"\n");
+			System.out.println("Segundo Puesto de Mundial QATAR 2022:\n"
+					+ "  Equipo "+pais2.getId()+ " = "+ pais2.getNombre() + " | Grupo: " + pais2.getGrupo()
+					+"\n  Goles totales realizados: "+pais2.getGoles()+"\n");
 		}
 		for (Pais pais1 : primero) {	
-				System.out.println("El Gran ganador Mundial QATAR 2022:\n"
-						+ "  Equipo "+pais1.getId()+ " = "+ pais1.getNombre() + " | Grupo: " + pais1.getGrupo()
-						+"\n  Goles totales realizados: "+pais1.getGoles()+"\n"
-								+ "  "+pais1.getNombre()+" CAMPEON MUNDIAL QATAR 2022");
+			System.out.println("El Gran ganador Mundial QATAR 2022:\n"
+					+ "  Equipo "+pais1.getId()+ " = "+ pais1.getNombre() + " | Grupo: " + pais1.getGrupo()
+					+"\n  Goles totales realizados: "+pais1.getGoles()+"\n"
+							+ "  "+pais1.getNombre()+" CAMPEON MUNDIAL QATAR 2022");
 		}
 	}
 
@@ -1011,7 +902,7 @@ public class Main {
 	
 	public static void verFinal (LinkedList<Partido> partidos) {
 		if(partidos.isEmpty()) {
-			System.out.println( "Lista vacia pá");
+			System.out.println( "Lista de final vacia pá");
 		}else {
 			for (Partido partido : partidos) {
 				if (partido.getId()==64){
@@ -1022,8 +913,19 @@ public class Main {
 		}
 	}
 
-	public static void BuscarPartidoEquipos() {
+	public static void BuscarPartidoEquipos(LinkedList<Partido> partidos) {
 		
+		System.out.print("Escriba el pais para ver sus partidos: ");
+		Scanner entrada = new Scanner(System.in);
+		String nombrePais = entrada.next();
+		
+		for(Partido partido: partidos){
+		    if(partido.getPais1().getNombre().equalsIgnoreCase(nombrePais) || partido.getPais2().getNombre().equalsIgnoreCase(nombrePais)) {
+				System.out.println("_________________________________");
+		    	System.out.println(partido.getNombre()+"\n"+partido.getDetalle());
+		    	
+		    }
+		}
 	}
 
 }
