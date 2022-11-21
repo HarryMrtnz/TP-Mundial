@@ -210,7 +210,7 @@ public class Main {
 		LinkedList<Pais> tercero = new LinkedList<Pais>();
 		
 		for (Pais pais : listaTercerPuesto) {
-			if (pais.isCalificado()) {
+			if (pais.getPorPartidoTercerPuesto()=="Gano") {
 				tercero.add(pais);
 			}
 		}
@@ -849,10 +849,10 @@ public class Main {
 						p61.jugar2(pais1, pais2);	listaPartidos.add(p61);
 						if (pais1.isCalificado()) {
 							pais1.setPartidoSemifinal("Gano1");
-							pais1.setTercerPuesto(false);
+							pais2.setPorPartidoTercerPuesto("1");
 						} else {
 							pais2.setPartidoSemifinal("Gano1");
-							pais2.setTercerPuesto(false);
+							pais1.setPorPartidoTercerPuesto("1");
 						}
 					}
 					if (pais1.getPartidoCuartos()=="Gano3")
@@ -861,10 +861,10 @@ public class Main {
 						p62.jugar2(pais1, pais2);	listaPartidos.add(p62);
 						if (pais1.isCalificado()) {
 							pais1.setPartidoSemifinal("Gano2");
-							pais1.setTercerPuesto(false);
+							pais2.setPorPartidoTercerPuesto("2");
 						} else {
 							pais2.setPartidoSemifinal("Gano2");
-							pais2.setTercerPuesto(false);
+							pais1.setPorPartidoTercerPuesto("2");
 
 						}
 					}
@@ -875,7 +875,7 @@ public class Main {
 	
 	public static void listaTercerPuesto(LinkedList<Pais> tercerPuesto) {
 		if(tercerPuesto.isEmpty()) {
-			System.out.println("Lista de cuartos vacia pá");
+			System.out.println("Lista de Tercer Puesto vacia pá");
 		
 		}else {
 			System.out.println("Estos son los "+tercerPuesto.size()+" equipos que\n"
@@ -894,10 +894,10 @@ public class Main {
 		}else {
 			for (Pais pais1 : tercerPuesto) {
 				for (Pais pais2 : tercerPuesto) {
-					if (pais1.isTercerPuesto())
-						if (pais2.isTercerPuesto()) {
+					if (pais1.getPorPartidoTercerPuesto()=="1")
+						if (pais2.getPorPartidoTercerPuesto()=="2") {
 						Partido p63 = new Partido(63, pais1, pais2);
-						p63.jugar2(pais1, pais2);	listaPartidos.add(p63);
+						p63.jugar3(pais1, pais2);	listaPartidos.add(p63);
 					}
 				}
 			}
@@ -951,7 +951,8 @@ public class Main {
 		for (Pais pais1 : primero) {	
 				System.out.println("El Gran ganador Mundial QATAR 2022:\n"
 						+ "  Equipo "+pais1.getId()+ " = "+ pais1.getNombre() + " | Grupo: " + pais1.getGrupo()
-						+"\n  Goles totales realizados: "+pais1.getGoles()+"\n");
+						+"\n  Goles totales realizados: "+pais1.getGoles()+"\n"
+								+ "  "+pais1.getNombre()+" CAMPEON MUNDIAL QATAR 2022");
 		}
 	}
 

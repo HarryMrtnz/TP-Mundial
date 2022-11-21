@@ -1,7 +1,5 @@
 package logica;
 
-import java.util.LinkedList;
-
 public class Partido {
 	private int id = 0;
 	private String nombre;
@@ -141,6 +139,52 @@ public class Partido {
 						+ "Duracion total de partido: "+this.getDuracion()+" minutos.\n" ;	
 			} else {
 				pais1.setCalificado(false);
+				this.detalle = "\n Partido empatado.\n Definicion por penales.\n Gano " + pais2.getNombre()+"\n"
+						+ " Resultado: "+ pais1.getNombre()+" "+ gol1+" ("+gol3+") | ("+ gol4 +") "+gol2+" "+ pais2.getNombre()+"\n" 
+						+ "Duracion total de partido: "+this.getDuracion()+" minutos.\n" ;
+			} 
+		}
+	}
+	
+	//metodo para jugar por el tercer puesto ya que ambos equipos perdieron tienen getCalificado=false
+	public void jugar3(Pais pais1, Pais pais2) {
+		int gol1, gol2, tiempoExtra; //Goles de cada equipo
+		gol1 =(int) (Math.random()*6 );
+		gol2 =(int) (Math.random()*6 );
+		
+		tiempoExtra =(int) (Math.random()*10 );
+		this.setDuracion(90+tiempoExtra);
+		this.nombre = pais1.getNombre()+" vs " +pais2.getNombre();
+		
+		pais1.setGoles(pais1.getGoles()+gol1);
+		pais2.setGoles(pais2.getGoles()+gol2);
+		//Pais que gana suma 3 puntos, pais que pierde no suma puntos, partido empatado ambos suman 1 punto
+		if (gol1 > gol2) {
+			pais1.setPorPartidoTercerPuesto("Gano");
+			this.detalle = "\n Gano " + pais1.getNombre()+"\n"
+					+ " Resultado: "+ pais1.getNombre()+" "+gol1+" | "+ gol2 +" "+ pais2.getNombre()+"\n" 
+					+ "Duracion total de partido: "+this.getDuracion()+" minutos." ;	
+		} else if(gol1 < gol2){
+			pais2.setPorPartidoTercerPuesto("Gano");
+			this.detalle = "\n Gano " + pais2.getNombre()+"\n"
+					+ " Resultado: "+ pais1.getNombre()+" "+gol1+" | "+ gol2 +" "+ pais2.getNombre()+"\n" 
+					+ "Duracion total de partido: "+this.getDuracion()+" minutos." ;
+		} else { //empate
+			int gol3, gol4; //Goles de cada equipo
+			gol3 =(int) (Math.random()*6 );
+			gol4 =(int) (Math.random()*6 );
+			tiempoExtra =(int) (Math.random()*5 );
+			this.setDuracion(90+tiempoExtra+15);
+			
+			pais1.setGoles(pais1.getGoles()+gol3);
+			pais2.setGoles(pais2.getGoles()+gol4);
+			if (gol3 >= gol4) {
+				pais1.setPorPartidoTercerPuesto("Gano");
+				this.detalle = "\n Partido empatado.\n Definicion por penales.\n Gano " + pais1.getNombre()+"\n"
+						+ " Resultado: "+ pais1.getNombre()+" "+ gol1+" ("+gol3+") | ("+ gol4 +") "+gol2+" "+ pais2.getNombre()+"\n" 
+						+ "Duracion total de partido: "+this.getDuracion()+" minutos.\n" ;	
+			} else {
+				pais2.setPorPartidoTercerPuesto("Gano");
 				this.detalle = "\n Partido empatado.\n Definicion por penales.\n Gano " + pais2.getNombre()+"\n"
 						+ " Resultado: "+ pais1.getNombre()+" "+ gol1+" ("+gol3+") | ("+ gol4 +") "+gol2+" "+ pais2.getNombre()+"\n" 
 						+ "Duracion total de partido: "+this.getDuracion()+" minutos.\n" ;
