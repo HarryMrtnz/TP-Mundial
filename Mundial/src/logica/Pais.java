@@ -8,6 +8,10 @@ public class Pais {
 	private boolean calificado;
 	private int puntos;
 	private int puestoGrupo;
+	private String partidoOctavos;
+	private String partidoCuartos;
+	private String partidoSemifinal;
+	private boolean partidoTercerPuesto;
 	
 	public Pais(String id, String nombre, int goles, String grupo, boolean calificado) {
 		super();
@@ -21,7 +25,9 @@ public class Pais {
 	@Override
 	public String toString() {
 		return "Pais [id=" + id + ", nombre=" + nombre + ", goles=" + goles + ", grupo=" + grupo + ", calificado="
-				+ calificado + "]";
+				+ calificado + ", puntos=" + puntos + ", puestoGrupo=" + puestoGrupo + ", partidoOctavos="
+				+ partidoOctavos + ", partidoCuartos=" + partidoCuartos + ", partidoSemifinal=" + partidoSemifinal
+				+ ", tercerPuesto=" + partidoTercerPuesto + "]";
 	}
 
 	public String getId() {
@@ -78,6 +84,38 @@ public class Pais {
 
 	public void setPuestoGrupo(int puestoGrupo) {
 		this.puestoGrupo = puestoGrupo;
+	}
+
+	public String getPartidoOctavos() {
+		return partidoOctavos;
+	}
+
+	public void setPartidoOctavos(String partidoOctavos) {
+		this.partidoOctavos = partidoOctavos;
+	}
+
+	public String getPartidoCuartos() {
+		return partidoCuartos;
+	}
+
+	public void setPartidoCuartos(String partidoCuartos) {
+		this.partidoCuartos = partidoCuartos;
+	}
+
+	public String getPartidoSemifinal() {
+		return partidoSemifinal;
+	}
+
+	public void setPartidoSemifinal(String partidoSemifinal) {
+		this.partidoSemifinal = partidoSemifinal;
+	}
+
+	public boolean isTercerPuesto() {
+		return partidoTercerPuesto;
+	}
+
+	public void setTercerPuesto(boolean partidoTercerPuesto) {
+		this.partidoTercerPuesto = partidoTercerPuesto;
 	}
 	
 	
