@@ -218,10 +218,12 @@ public class Main {
 				segundo.add(pais);
 			}
 		}
+		System.out.println("MUNDIAL GENERADO EXITOSAMENTE.");
+		
 		//Total de 64 partidos:
 		// Face de grupos: 1 al 48 | Face octavos: 49 a 56 | Face cuartos 57 a 60 |
 		// Semifinales 61 y 62     | Tercer puesto: 63	   | FINAL: 64
-		System.out.println("MUNDIAL GENERADO EXITOSAMENTE.");
+
 			
 		///////////////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////////////
@@ -259,7 +261,7 @@ public class Main {
 		System.out.println("|  14- Clasificados a la Final.");
 		System.out.println("|  15- Partido final.");
 		System.out.println("|  16- Podio Mundial Qatar 2022\n|");
-		System.out.println("|  17- Buscar partidos por pais (No terminado)");
+		System.out.println("|  17- Buscar partidos por pais");
 		Scanner entrada = new Scanner(System.in);
 		int opcion = entrada.nextInt();
 		
